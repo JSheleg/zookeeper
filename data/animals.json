@@ -144,6 +144,28 @@
         "hungry"
       ],
       "id": "13"
+    },
+    {
+      "name": "Skyler",
+      "species": "Dog",
+      "diet": "omnivore",
+      "personalityTraits": [
+        "hungry",
+        "anxious",
+        "loving"
+      ],
+      "id": "15"
+    },
+    {
+      "name": "Skyler",
+      "species": "Dog",
+      "diet": "omnivore",
+      "personalityTraits": [
+        "hungry",
+        "anxious",
+        "loving"
+      ],
+      "id": "15"
     }
   ]
 }
