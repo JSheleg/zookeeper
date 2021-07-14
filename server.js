@@ -2,12 +2,15 @@
 const {animals} = require('./data/animals');
 //require npm express
 const express = require('express');
+//set environment variable for Heroku
+const Port = process.env.PORT || 3001;
+
 //initiate server
 const app = express();
 
 //set up server
-app.listen(3001, () => {
-    console.log(`API server now on port 3001`);
+app.listen(PORT, () => {
+    console.log(`API server now on port ${PORT}`);
 });
 
 function filterByQuery(query, animalsArray) {
