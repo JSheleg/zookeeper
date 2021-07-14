@@ -1,11 +1,20 @@
 //require npm express
 const express = require('express');
+//import fs to write data to animals.json file
+const fs = require('fs');
+//provides utilities for working with file and directory paths
+const path = require('path');
 //require data
 const {animals} = require('./data/animals');
 //set environment variable for Heroku
 const Port = process.env.PORT || 3001;
 //initiate server
 const app = express();
+
+// parse incoming string or array data
+app.use(express.urlencoded({ extended: true }));
+// parse incoming JSON data
+app.use(express.json());
 
 
 
@@ -54,6 +63,39 @@ function findById(id, animalsArray) {
   return result;
 }
 
+function createNewAnimal(body,animalsArray){
+  const animal = body;
+  console.log(animal);
+  
+  animalsArray.push(animal);
+  //write animal data to JSON
+  fs.writeFileSync(
+    path.join(__dirname,'./data/animals.json'),
+    JSON.stringify({animals: animalsArray}, null, 2)
+
+    // null means no edit to existing data
+    //2 indicates we want to create white space between our values
+  );
+
+  return animal;
+}
+
+function validateAnimal(animal) {
+  if (!animal.name || typeof animal.name !== 'string') {
+    return false;
+  }
+  if (!animal.species || typeof animal.species !== 'string') {
+    return false;
+  }
+  if (!animal.diet || typeof animal.diet !== 'string') {
+    return false;
+  }
+  if (!animal.personalityTraits || !Array.isArray(animal.personalityTraits)) {
+    return false;
+  }
+  return true;
+}
+
 //add route and accessing query
 app.get('/api/animals', (req, res) => {
     let results = animals;
@@ -75,10 +117,33 @@ app.get('/api/animals/:id', (req, res) => {
   }
 });
 
+//set up route on server to accept data to be use or stored server side
+app.post('/api/animals', (req, res) => {
+  //set id based on what the next index of the array will be
+  req.body.id = animals.length.toString();
+
+  // if any data in req.body is incorrect, send 400 error back
+  //res.status().send() relays message back to user
+  if (!validateAnimal(req.body)) {
+    res.status(400).send('The animal is not properly formatted.');
+  } else {
+    const animal = createNewAnimal(req.body, animals);
+    res.json(animal);
+  }
+
+  //add animal to json file and animals array in this function
+  const animal = createNewAnimal(req.body, animals);
+  // req.body is where our incoming content will be
+  // console.log(req.body);
+  res.json(animal);
+});
+
 //set up server
 app.listen(Port, () => {
   console.log(`API server now on port ${Port}`);
 });
+
+
 
 
 

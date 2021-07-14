@@ -1,4 +1,3 @@
-
 {
   "animals": [
     {
@@ -109,7 +108,24 @@
       "personalityTraits": [
         "loving"
       ]
-      
+    },
+    {
+      "name": "Larry",
+      "species": "lemur",
+      "diet": "omnivore",
+      "personalityTraits": [
+        "hungry"
+      ],
+      "id": "11"
+    },
+    {
+      "name": "Larry",
+      "species": "lemur",
+      "diet": "",
+      "personalityTraits": [
+        "hungry"
+      ],
+      "id": "12"
     }
   ]
 }
