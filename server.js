@@ -1,17 +1,13 @@
-//require data
-const {animals} = require('./data/animals');
 //require npm express
 const express = require('express');
+//require data
+const {animals} = require('./data/animals');
 //set environment variable for Heroku
 const Port = process.env.PORT || 3001;
-
 //initiate server
 const app = express();
 
-//set up server
-app.listen(Port, () => {
-    console.log(`API server now on port ${Port}`);
-});
+
 
 function filterByQuery(query, animalsArray) {
     let personalityTraitsArray = [];
@@ -72,16 +68,16 @@ app.get('/api/animals', (req, res) => {
 //param route
 app.get('/api/animals/:id', (req, res) => {
   const result = findById(req.params.id, animals);
-    res.json(result);
-});
-
-app.get('/api/animals/:id', (req, res) => {
-  const result = findById(req.params.id, animals);
   if (result) {
     res.json(result);
   } else {
-    res.send(404);
+    res.sendStatus(404);
   }
+});
+
+//set up server
+app.listen(Port, () => {
+  console.log(`API server now on port ${Port}`);
 });
 
 
