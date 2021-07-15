@@ -10,6 +10,8 @@ const {animals} = require('./data/animals');
 const Port = process.env.PORT || 3001;
 //initiate server
 const app = express();
+const apiRoutes = require('./routes/apiRoutes');
+const htmlRoutes = require('./routes/htmlRoutes');
 
 // parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
@@ -19,27 +21,9 @@ app.use(express.json());
 //all front end code can be access via public folder
 app.use(express.static('public'));
 
-
-//add route to index.html and respond with HTML page displayed in browser
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, './public/index.html'));
-});
-
-//route to /animals
-app.get('/animals', (req, res) => {
-  res.sendFile(path.join(__dirname, './public/animals.html'));
-});
-
-//route to zookeepers
-app.get('/zookeepers', (req, res) => {
-  res.sendFile(path.join(__dirname, './public/zookeepers.html'));
-});
-
-//wildcard route, recieve homepage as a response for unknown/undefined page route. 
-//this should always be the last route
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './public/index.html'));
-});
+//use router set up in apiRoutes, / endpont will connect to HTML routes
+app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
 
 //set up server
 app.listen(Port, () => {

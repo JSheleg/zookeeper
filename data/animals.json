@@ -108,64 +108,6 @@
       "personalityTraits": [
         "loving"
       ]
-    },
-    {
-      "name": "Larry",
-      "species": "lemur",
-      "diet": "omnivore",
-      "personalityTraits": [
-        "hungry"
-      ],
-      "id": "11"
-    },
-    {
-      "name": "Larry",
-      "species": "lemur",
-      "diet": "",
-      "personalityTraits": [
-        "hungry"
-      ],
-      "id": "12"
-    },
-    {
-      "name": "Larry",
-      "species": "lemur",
-      "diet": "omnivore",
-      "personalityTraits": [
-        "hungry"
-      ],
-      "id": "13"
-    },
-    {
-      "name": "Larry",
-      "species": "lemur",
-      "diet": "omnivore",
-      "personalityTraits": [
-        "hungry"
-      ],
-      "id": "13"
-    },
-    {
-      "name": "Skyler",
-      "species": "Dog",
-      "diet": "omnivore",
-      "personalityTraits": [
-        "hungry",
-        "anxious",
-        "loving"
-      ],
-      "id": "15"
-    },
-    {
-      "name": "Skyler",
-      "species": "Dog",
-      "diet": "omnivore",
-      "personalityTraits": [
-        "hungry",
-        "anxious",
-        "loving"
-      ],
-      "id": "15"
     }
   ]
 }
